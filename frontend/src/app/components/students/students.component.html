@@ -1,0 +1,40 @@
+<div class="container">
+    <div>
+        <button class="btn btn-basic btn-sm" (click)="studentNew()">New</button>
+    </div>
+    <div class="form-group">
+        <label>Search: </label>
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    </div>
+    
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>I.D</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Year</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+          <tr *ngFor="let stud of students ">
+            <td>{{stud.id }}</td>
+            <td>{{stud.fname | uppercase}} {{stud.lname | uppercase}}</td>
+            <td>{{stud.course}}</td>
+            <td>{{stud.year}}</td>
+            <td>
+              <button class="btn btn-danger btn-sm">
+                <i>Delete</i>
+              </button>
+              <button class="btn btn-info btn-sm">
+                <i>Edit</i>
+              </button>
+              <button class="btn btn-basic btn-sm">
+                <i>View</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <form [formGroup]="appForm" (ngSubmit)="studentNewSubmit()">
+      <div class="form-group">
+        <label for="student_id">I.D</label>
+        <input formControlName="id" type="text" class="form-control" id="Student I.D"  placeholder="Enter Student I.D" >
+        <div class="alert alert-danger" *ngIf="error.id">
+          {{error.id}}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input formControlName="first_name" type="text" class="form-control" id="first_name"  placeholder="Enter First Name" >
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input formControlName="last_name" type="text" class="form-control" id="last_name"  placeholder="Enter Last Name" >
+      </div>
+      <div class="form-group">
+        <label>Course</label>
+        <select id="course" class="form-control" formControlName="course">
+          <option value="BSIT">BSIT</option>
+          <option value="BSCS">BSCS</option>
+          <option value="BSIS">BSIS</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Year</label>
+        <select id="year" class="form-control" formControlName="year">
+          <option value="1">1st</option>
+          <option value="2">2nd</option>
+          <option value="3">3rd</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Contact</label>
+        <input formControlName="contact" type="text" id="contact" placeholder="Enter Contact" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <textarea formControlName="address" id="address" class="form-control">
+
+        </textarea>
+      </div>
+  
+      
+    
+      <button type="submit" class="btn btn-primary">Submit</button>
+      
+    </form>
+  </div>
+</div>
