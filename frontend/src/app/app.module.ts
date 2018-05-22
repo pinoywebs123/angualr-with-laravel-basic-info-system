@@ -1,3 +1,4 @@
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { StudentService } from './shared/student.service';
 import { AfterGuard } from './shared/after-login.service';
 import { BeforeGuard } from './shared/before-login.service';
@@ -14,12 +15,13 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoute } from './modules/app-route.module';
 import { StudentsComponent } from './components/students/students.component';
 import { StudentNewComponent } from './components/students/student-new/student-new.component';
 import { StudentEditComponent } from './components/students/student-edit/student-edit.component';
+import { multicast } from 'rxjs/operators';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,13 @@ import { StudentEditComponent } from './components/students/student-edit/student
     ReactiveFormsModule,
     
   ],
-  providers: [AuthService, TokenService, BeforeGuard, AfterGuard, StudentService],
+  providers: [AuthService, 
+              TokenService, 
+              BeforeGuard, 
+              AfterGuard, 
+              StudentService, 
+                {provide:HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+              ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

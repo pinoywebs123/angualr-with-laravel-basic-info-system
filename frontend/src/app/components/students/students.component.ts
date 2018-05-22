@@ -21,6 +21,7 @@ export class StudentsComponent implements OnInit {
     this.student.studentGet().subscribe(
       (res)=> {
         this.students = res['data'];
+        console.log(res);
       },
       (err)=> console.log(err)
     )

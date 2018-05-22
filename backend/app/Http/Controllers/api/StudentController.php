@@ -5,12 +5,15 @@ namespace App\Http\Controllers\api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Students;
+use JWTAuth;
 class StudentController extends Controller
 {
     
-    public function get(){
+    public function get(Request $request){
+        $headers = $request->header('Authorization');
+       $user = JWTAuth::parseToken()->authenticate($headers);
         $students = Students::all();
-        return response()->json(['data'=> $students]);
+        return response()->json(['data'=> $students, 'header'=> $headers, 'user'=> $user]);
     }
     public function add(Request $request){
       $this->validate($request, [
